@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .vue-card {
+    @apply bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105;
+  }
+  
+  .vue-button {
+    @apply px-6 py-3 bg-vue-green text-white font-medium rounded-lg hover:bg-vue-dark transition-colors duration-200;
+  }
+  
+  .vue-button-outline {
+    @apply px-6 py-3 border-2 border-vue-green text-vue-green font-medium rounded-lg hover:bg-vue-green hover:text-white transition-colors duration-200;
+  }
+  
+  .vue-tag {
+    @apply bg-vue-green/10 text-vue-dark text-xs font-medium px-2.5 py-0.5 rounded;
+  }
+  
+  .vue-badge {
+    @apply bg-vue-green/20 text-vue-green text-xs font-medium px-2.5 py-0.5 rounded;
+  }
+}
