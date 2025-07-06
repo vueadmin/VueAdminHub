@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# 允许重要页面
+Allow: /templates
+Allow: /ui-libraries  
+Allow: /tools
+Allow: /plugins
+Allow: /search
+
+# 阻止不必要的页面
+Disallow: /api/
+Disallow: /_nuxt/
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/
+
+# 站点地图
+Sitemap: https://vueadminhub.com/sitemap.xml
+
+# 爬取延迟（可选）
+Crawl-delay: 1

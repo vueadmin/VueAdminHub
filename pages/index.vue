@@ -145,16 +145,27 @@
 <script setup lang="ts">
 import { allResources, templates, uiLibraries, tools, recommendedResources } from '~/data/resources'
 
-// SEO Meta
+// SEO Meta  
 useSeoMeta({
-  title: 'Vue Admin Hub - 专业的 Vue.js 管理后台资源平台',
-  description: '汇聚最优质的 Vue.js 管理模板、UI 组件库和开发工具，助力开发者构建现代化管理系统',
-  keywords: 'Vue.js, 管理后台, 模板, UI组件库, 开发工具, Element Plus, Ant Design Vue',
+  title: 'Vue Admin Hub - 专业的 Vue.js 管理后台资源平台 | 40+精选资源',
+  description: '汇聚最优质的 Vue.js 管理模板、UI 组件库和开发工具。包含 vue-element-admin、Element Plus、Ant Design Vue 等40+精选资源，助力开发者快速构建现代化管理系统。免费开源，持续更新。',
+  keywords: 'Vue.js,管理后台,Admin模板,Element Plus,Ant Design Vue,vue-element-admin,vue-pure-admin,Vite,Nuxt,UI组件库,开发工具,免费模板,开源项目',
   author: 'Vue Admin Hub',
+  robots: 'index, follow, max-image-preview:large',
   ogTitle: 'Vue Admin Hub - 专业的 Vue.js 管理后台资源平台',
-  ogDescription: '汇聚最优质的 Vue.js 管理模板、UI 组件库和开发工具',
+  ogDescription: '40+ Vue.js 精选资源，涵盖管理模板、UI组件库、开发工具。vue-element-admin、Element Plus、Vite 一站式解决方案。',
   ogType: 'website',
-  twitterCard: 'summary_large_image'
+  ogUrl: 'https://vueadminhub.com',
+  ogImage: 'https://vueadminhub.com/og-image.jpg',
+  ogImageAlt: 'Vue Admin Hub - Vue.js 管理后台资源平台',
+  ogSiteName: 'Vue Admin Hub',
+  ogLocale: 'zh_CN',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@vueadminhub',
+  twitterCreator: '@vueadminhub',
+  twitterTitle: 'Vue Admin Hub - Vue.js 管理后台资源平台',
+  twitterDescription: '40+ Vue.js 精选资源：管理模板、UI组件库、开发工具',
+  twitterImage: 'https://vueadminhub.com/twitter-image.jpg'
 })
 
 // Featured resources (mix of popular and recommended)
@@ -197,13 +208,126 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'Vue Admin Hub',
-        description: '专业的 Vue.js 管理后台资源平台',
+        description: '专业的 Vue.js 管理后台资源平台，汇聚最优质的模板、组件库和开发工具',
         url: 'https://vueadminhub.com',
+        image: 'https://vueadminhub.com/og-image.jpg',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://vueadminhub.com/logo.png',
+          width: 512,
+          height: 512
+        },
+        sameAs: [
+          'https://github.com/vuejs',
+          'https://twitter.com/vuejs',
+          'https://discord.com/invite/vue'
+        ],
         potentialAction: {
           '@type': 'SearchAction',
-          target: 'https://vueadminhub.com/search?q={search_term_string}',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://vueadminhub.com/search?q={search_term_string}'
+          },
           'query-input': 'required name=search_term_string'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Vue Admin Hub',
+          url: 'https://vueadminhub.com',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://vueadminhub.com/logo.png'
+          }
+        },
+        mainEntity: {
+          '@type': 'ItemList',
+          name: 'Vue.js 管理后台资源集合',
+          description: '精选的 Vue.js 管理模板、UI组件库和开发工具',
+          numberOfItems: allResources.length,
+          itemListElement: featuredResources.value.map((resource, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+              '@type': 'SoftwareApplication',
+              name: resource.name,
+              description: resource.description,
+              applicationCategory: 'DeveloperApplication',
+              operatingSystem: 'Web',
+              author: {
+                '@type': resource.author.includes(' ') ? 'Organization' : 'Person',
+                name: resource.author
+              },
+              offers: {
+                '@type': 'Offer',
+                price: resource.price === 'free' ? '0' : 'varies',
+                priceCurrency: 'USD'
+              },
+              aggregateRating: resource.rating ? {
+                '@type': 'AggregateRating',
+                ratingValue: resource.rating,
+                ratingCount: Math.floor(resource.stars / 100),
+                bestRating: 5,
+                worstRating: 1
+              } : undefined
+            }
+          }))
         }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Vue Admin Hub',
+        description: '专业的 Vue.js 管理后台资源平台',
+        url: 'https://vueadminhub.com',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://vueadminhub.com/logo.png'
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          availableLanguage: ['Chinese', 'English']
+        },
+        sameAs: [
+          'https://github.com/vuejs',
+          'https://twitter.com/vuejs'
+        ]
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: '什么是 Vue Admin Hub？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'Vue Admin Hub 是专业的 Vue.js 管理后台资源平台，汇聚了40+精选的管理模板、UI组件库和开发工具，帮助开发者快速构建现代化管理系统。'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '包含哪些类型的资源？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '我们提供四大类资源：管理模板（如 vue-element-admin、vue-pure-admin）、UI组件库（如 Element Plus、Ant Design Vue）、开发工具（如 Vite、Pinia）和插件工具（如 VueUse、Vue I18n）。'
+            }
+          },
+          {
+            '@type': 'Question',
+            name: '资源都是免费的吗？',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: '平台收录的资源绝大部分都是开源免费的，部分商业产品会明确标注价格。我们专注于推荐高质量的开源项目，帮助开发者降低成本。'
+            }
+          }
+        ]
       })
     }
   ]

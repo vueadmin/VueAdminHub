@@ -1,0 +1,46 @@
+{
+  "name": "Vue Admin Hub - Vue.js 管理后台资源平台",
+  "short_name": "Vue Admin Hub",
+  "description": "专业的 Vue.js 管理后台资源平台，汇聚40+精选资源",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#35495e",
+  "theme_color": "#42b883",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "developer"],
+  "lang": "zh-CN",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    }
+  ]
+}

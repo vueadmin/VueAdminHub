@@ -1,29 +1,7 @@
 <template>
   <div v-if="resource" class="px-4 sm:px-0">
     <!-- Breadcrumb -->
-    <nav class="flex mb-8" aria-label="Breadcrumb">
-      <ol class="inline-flex items-center space-x-1 md:space-x-3">
-        <li class="inline-flex items-center">
-          <NuxtLink to="/" class="text-gray-700 hover:text-vue-green">
-            首页
-          </NuxtLink>
-        </li>
-        <li>
-          <div class="flex items-center">
-            <Icon name="heroicons:chevron-right-20-solid" class="w-4 h-4 text-gray-400" />
-            <NuxtLink to="/templates" class="ml-1 text-gray-700 hover:text-vue-green md:ml-2">
-              管理模板
-            </NuxtLink>
-          </div>
-        </li>
-        <li aria-current="page">
-          <div class="flex items-center">
-            <Icon name="heroicons:chevron-right-20-solid" class="w-4 h-4 text-gray-400" />
-            <span class="ml-1 text-gray-500 md:ml-2">{{ resource.name }}</span>
-          </div>
-        </li>
-      </ol>
-    </nav>
+    <BreadcrumbNav :items="breadcrumbItems" />
 
     <!-- Header -->
     <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
@@ -339,6 +317,12 @@ const resource = computed(() => {
   return templates.find(r => r.id === resourceId)
 })
 
+// Breadcrumb items
+const breadcrumbItems = computed(() => [
+  { name: '管理模板', url: '/templates' },
+  { name: resource.value?.name || '未知资源' }
+])
+
 // Related resources (same category, excluding current)
 const relatedResources = computed(() => {
   if (!resource.value) return []
@@ -362,11 +346,25 @@ const tabs = [
 
 // SEO Meta
 useSeoMeta({
-  title: () => resource.value ? `${resource.value.name} - Vue Admin Hub` : '资源未找到',
-  description: () => resource.value ? resource.value.description : '资源未找到',
-  keywords: () => resource.value ? resource.value.tags.join(', ') : '',
-  ogTitle: () => resource.value ? resource.value.name : '资源未找到',
-  ogDescription: () => resource.value ? resource.value.description : '资源未找到'
+  title: () => resource.value ? `${resource.value.name} - Vue.js 管理模板详情 | Vue Admin Hub` : '资源未找到',
+  description: () => resource.value ? `${resource.value.description} | ${resource.value.features.slice(0, 3).join('、')} | ${resource.value.stars}+ GitHub Stars | 作者：${resource.value.author}` : '资源未找到',
+  keywords: () => resource.value ? `${resource.value.name},${resource.value.tags.join(',')},Vue.js,管理模板,${resource.value.author}` : '',
+  author: () => resource.value ? resource.value.author : '',
+  robots: 'index, follow, max-image-preview:large',
+  ogTitle: () => resource.value ? `${resource.value.name} - Vue.js 管理模板` : '资源未找到',
+  ogDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '资源未找到',
+  ogType: 'article',
+  ogUrl: () => resource.value ? `https://vueadminhub.com/templates/${resource.value.id}` : '',
+  ogImage: () => resource.value ? `https://vueadminhub.com/templates/${resource.value.id}/preview.jpg` : '',
+  ogImageAlt: () => resource.value ? `${resource.value.name} 预览图` : '',
+  articleAuthor: () => resource.value ? resource.value.author : '',
+  articlePublishedTime: () => resource.value ? new Date(resource.value.lastUpdated + '-01').toISOString() : '',
+  articleModifiedTime: () => resource.value ? new Date(resource.value.lastUpdated + '-01').toISOString() : '',
+  articleTag: () => resource.value ? resource.value.tags : [],
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => resource.value ? `${resource.value.name} - Vue.js 管理模板` : '',
+  twitterDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '',
+  twitterImage: () => resource.value ? `https://vueadminhub.com/templates/${resource.value.id}/twitter.jpg` : ''
 })
 
 // 404 handling

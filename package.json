@@ -16,6 +16,7 @@
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@nuxt/icon": "^1.0.0",
     "@vueuse/nuxt": "^10.7.2",
+    "@nuxtjs/sitemap": "^5.0.1",
     "vue-gtag": "^2.0.1"
   }
 }
