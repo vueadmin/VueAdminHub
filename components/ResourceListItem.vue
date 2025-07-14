@@ -60,7 +60,7 @@
       </div>
       
       <NuxtLink
-        :to="`/${resource.category === 'ui-library' ? 'ui-libraries' : resource.category === 'framework' ? 'tools' : resource.category}s/${resource.id}`"
+        :to="getResourceDetailPath(resource)"
         class="vue-button"
       >
         查看详情
@@ -71,17 +71,11 @@
 
 <script setup lang="ts">
 import type { ResourceItem } from '~/types'
+import { getResourceDetailPath, formatNumber } from '~/utils/resource'
 
 interface Props {
   resource: ResourceItem
 }
 
 defineProps<Props>()
-
-const formatNumber = (num: number) => {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'k'
-  }
-  return num.toString()
-}
 </script>

@@ -11,7 +11,7 @@
             <h1 class="text-3xl font-bold text-vue-dark">{{ resource.name }}</h1>
             <span class="vue-badge text-lg px-3 py-1">{{ resource.vueVersion }}</span>
             <span v-if="resource.isNew" class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded">
-              新项目
+              新插件
             </span>
             <span v-if="resource.isPopular" class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded">
               热门推荐
@@ -144,7 +144,7 @@
               </span>
             </div>
             
-            <h3 class="text-lg font-semibold text-vue-dark mb-4 mt-6">📊 项目信息</h3>
+            <h3 class="text-lg font-semibold text-vue-dark mb-4 mt-6">📊 插件信息</h3>
             <div class="space-y-3">
               <div class="flex justify-between">
                 <span class="text-gray-600">作者:</span>
@@ -179,13 +179,6 @@
         <h3 class="text-lg font-semibold text-vue-dark mb-4">📦 安装指南</h3>
         
         <div class="space-y-6">
-          <div>
-            <h4 class="font-medium text-gray-900 mb-2">使用 Git 克隆</h4>
-            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-              <code class="text-green-400 text-sm">git clone {{ resource.github }}</code>
-            </div>
-          </div>
-          
           <div v-if="resource.npm">
             <h4 class="font-medium text-gray-900 mb-2">使用 npm 安装</h4>
             <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
@@ -193,17 +186,83 @@
             </div>
           </div>
           
-          <div>
-            <h4 class="font-medium text-gray-900 mb-2">快速开始</h4>
+          <div v-if="resource.npm">
+            <h4 class="font-medium text-gray-900 mb-2">使用 yarn 安装</h4>
             <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-              <pre class="text-green-400 text-sm"><code># 安装依赖
-npm install
+              <code class="text-green-400 text-sm">yarn add {{ resource.npm.split('/').pop() }}</code>
+            </div>
+          </div>
+          
+          <div v-if="resource.github">
+            <h4 class="font-medium text-gray-900 mb-2">从源码安装</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <code class="text-green-400 text-sm">git clone {{ resource.github }}</code>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Vue 3 项目中使用</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>import { createApp } from 'vue'
+import {{ resource.name.charAt(0).toUpperCase() + resource.name.slice(1).replace(/-/g, '') }} from '{{ resource.npm?.split('/').pop() || resource.name }}'
 
-# 启动开发服务器
-npm run dev
+const app = createApp({})
+app.use({{ resource.name.charAt(0).toUpperCase() + resource.name.slice(1).replace(/-/g, '') }})
+app.mount('#app')</code></pre>
+            </div>
+          </div>
 
-# 构建生产版本
-npm run build</code></pre>
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Nuxt 3 项目中使用</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: [
+    '{{ resource.npm?.split('/').pop() || resource.name }}'
+  ]
+})</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage Tab -->
+      <div v-if="activeTab === 'usage'">
+        <h3 class="text-lg font-semibold text-vue-dark mb-4">💡 使用示例</h3>
+        
+        <div class="space-y-6">
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">基础用法</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 使用插件组件 --&gt;
+    &lt;{{ resource.name }}-component /&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+// 插件会自动注册全局组件
+&lt;/script&gt;</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">配置选项</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-green-400 text-sm"><code>// main.js 或 plugins/ 目录下
+import { createApp } from 'vue'
+import {{ resource.name.charAt(0).toUpperCase() + resource.name.slice(1).replace(/-/g, '') }} from '{{ resource.npm?.split('/').pop() || resource.name }}'
+
+const app = createApp({})
+
+app.use({{ resource.name.charAt(0).toUpperCase() + resource.name.slice(1).replace(/-/g, '') }}, {
+  // 配置选项
+  theme: 'light',
+  locale: 'zh-CN'
+})
+
+app.mount('#app')</code></pre>
             </div>
           </div>
         </div>
@@ -297,17 +356,18 @@ npm run build</code></pre>
   <!-- 404 State -->
   <div v-else class="px-4 sm:px-0 text-center py-12">
     <Icon name="heroicons:exclamation-triangle-20-solid" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
-    <h1 class="text-2xl font-bold text-gray-900 mb-2">资源未找到</h1>
-    <p class="text-gray-500 mb-4">抱歉，您查找的资源不存在或已被删除。</p>
-    <NuxtLink to="/templates" class="vue-button">
-      返回模板列表
+    <h1 class="text-2xl font-bold text-gray-900 mb-2">插件未找到</h1>
+    <p class="text-gray-500 mb-4">抱歉，您查找的插件不存在或已被删除。</p>
+    <NuxtLink to="/plugins" class="vue-button">
+      返回插件列表
     </NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
-import { templates, allResources } from '~/data/resources'
+import { plugins, allResources } from '~/data/resources'
 import type { ResourceItem } from '~/types'
+import { formatNumber } from '~/utils/resource'
 
 // 获取路由参数
 const route = useRoute()
@@ -315,13 +375,13 @@ const resourceId = route.params.id as string
 
 // 查找资源
 const resource = computed(() => {
-  return templates.find(r => r.id === resourceId)
+  return plugins.find(r => r.id === resourceId)
 })
 
 // 面包屑导航
 const breadcrumbItems = computed(() => [
-  { name: '管理模板', url: '/templates' },
-  { name: resource.value?.name || '未知资源' }
+  { name: '插件工具', url: '/plugins' },
+  { name: resource.value?.name || '未知插件' }
 ])
 
 // 相关资源推荐（相同分类或相同标签，排除当前资源）
@@ -340,48 +400,41 @@ const relatedResources = computed(() => {
 // 标签页配置
 const activeTab = ref('overview')
 const tabs = [
-  { id: 'overview', name: '项目概览' },
+  { id: 'overview', name: '插件概览' },
   { id: 'installation', name: '安装指南' },
+  { id: 'usage', name: '使用示例' },
   { id: 'documentation', name: '相关文档' }
 ]
-
-// 格式化数字函数
-const formatNumber = (num: number) => {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'k'
-  }
-  return num.toString()
-}
 
 // 404 处理
 if (!resource.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Resource Not Found'
+    statusMessage: 'Plugin Not Found'
   })
 }
 
 // SEO Meta 配置
 useSeoMeta({
-  title: () => resource.value ? `${resource.value.name} - Vue.js 管理模板详情 | Vue Admin Hub` : '资源未找到',
-  description: () => resource.value ? `${resource.value.description} | ${resource.value.features.slice(0, 3).join('、')} | ${resource.value.stars}+ GitHub Stars | 作者：${resource.value.author}` : '资源未找到',
-  keywords: () => resource.value ? `${resource.value.name},${resource.value.tags.join(',')},Vue.js,管理模板,${resource.value.author}` : '',
+  title: () => resource.value ? `${resource.value.name} - Vue.js 插件详情 | Vue Admin Hub` : '插件未找到',
+  description: () => resource.value ? `${resource.value.description} | ${resource.value.features.slice(0, 3).join('、')} | ${resource.value.stars}+ GitHub Stars | 作者：${resource.value.author}` : '插件未找到',
+  keywords: () => resource.value ? `${resource.value.name},${resource.value.tags.join(',')},Vue.js,插件,${resource.value.author}` : '',
   author: () => resource.value ? resource.value.author : '',
   robots: 'index, follow, max-image-preview:large',
-  ogTitle: () => resource.value ? `${resource.value.name} - Vue.js 管理模板` : '资源未找到',
-  ogDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '资源未找到',
+  ogTitle: () => resource.value ? `${resource.value.name} - Vue.js 插件` : '插件未找到',
+  ogDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '插件未找到',
   ogType: 'article',
-  ogUrl: () => resource.value ? `https://vueadminhub.com/templates/${resource.value.id}` : '',
-  ogImage: () => resource.value ? `https://vueadminhub.com/templates/${resource.value.id}/preview.jpg` : '',
+  ogUrl: () => resource.value ? `https://vueadminhub.com/plugins/${resource.value.id}` : '',
+  ogImage: () => resource.value ? `https://vueadminhub.com/plugins/${resource.value.id}/preview.jpg` : '',
   ogImageAlt: () => resource.value ? `${resource.value.name} 预览图` : '',
   articleAuthor: () => resource.value ? resource.value.author : '',
   articlePublishedTime: () => resource.value ? new Date(resource.value.lastUpdated + '-01').toISOString() : '',
   articleModifiedTime: () => resource.value ? new Date(resource.value.lastUpdated + '-01').toISOString() : '',
   articleTag: () => resource.value ? resource.value.tags : [],
   twitterCard: 'summary_large_image',
-  twitterTitle: () => resource.value ? `${resource.value.name} - Vue.js 管理模板` : '',
+  twitterTitle: () => resource.value ? `${resource.value.name} - Vue.js 插件` : '',
   twitterDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '',
-  twitterImage: () => resource.value ? `https://vueadminhub.com/templates/${resource.value.id}/twitter.jpg` : ''
+  twitterImage: () => resource.value ? `https://vueadminhub.com/plugins/${resource.value.id}/twitter.jpg` : ''
 })
 
 // 结构化数据 for SEO
@@ -423,4 +476,4 @@ useHead({
     }
   ]
 })
-</script>
+</script> 
