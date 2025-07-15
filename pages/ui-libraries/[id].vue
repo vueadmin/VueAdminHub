@@ -45,7 +45,11 @@
             <div class="text-center">
               <div class="flex items-center justify-center mb-2">
                 <Icon name="mdi:account" class="h-5 w-5 text-purple-500 mr-1" />
-                <span class="text-2xl font-bold text-vue-dark">{{ resource.difficulty }}</span>
+                <span class="text-2xl font-bold text-vue-dark">{{ 
+                  resource.difficulty === 'beginner' ? '初级' :
+                  resource.difficulty === 'intermediate' ? '中级' :
+                  resource.difficulty === 'advanced' ? '高级' : resource.difficulty
+                }}</span>
               </div>
               <div class="text-sm text-gray-500">难度等级</div>
             </div>

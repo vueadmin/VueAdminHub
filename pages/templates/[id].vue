@@ -45,7 +45,11 @@
             <div class="text-center">
               <div class="flex items-center justify-center mb-2">
                 <Icon name="mdi:account" class="h-5 w-5 text-purple-500 mr-1" />
-                <span class="text-2xl font-bold text-vue-dark">{{ resource.difficulty }}</span>
+                <span class="text-2xl font-bold text-vue-dark">{{ 
+                  resource.difficulty === 'beginner' ? '初级' :
+                  resource.difficulty === 'intermediate' ? '中级' :
+                  resource.difficulty === 'advanced' ? '高级' : resource.difficulty
+                }}</span>
               </div>
               <div class="text-sm text-gray-500">难度等级</div>
             </div>
@@ -156,11 +160,19 @@
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-600">状态:</span>
-                <span class="font-medium capitalize">{{ resource.status }}</span>
+                <span class="font-medium">{{ 
+                  resource.status === 'active' ? '活跃维护' :
+                  resource.status === 'maintenance' ? '维护中' :
+                  resource.status === 'deprecated' ? '已弃用' : resource.status
+                }}</span>
               </div>
               <div class="flex justify-between">
                 <span class="text-gray-600">价格:</span>
-                <span class="font-medium capitalize">{{ resource.price }}</span>
+                <span class="font-medium">{{ 
+                  resource.price === 'free' ? '免费' :
+                  resource.price === 'paid' ? '付费' :
+                  resource.price === 'freemium' ? '免费增值' : resource.price
+                }}</span>
               </div>
               <div v-if="resource.rating" class="flex justify-between">
                 <span class="text-gray-600">评分:</span>
@@ -345,13 +357,7 @@ const tabs = [
   { id: 'documentation', name: '相关文档' }
 ]
 
-// 格式化数字函数
-const formatNumber = (num: number) => {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'k'
-  }
-  return num.toString()
-}
+import { formatNumber } from '~/utils/resource'
 
 // 404 处理
 if (!resource.value) {
