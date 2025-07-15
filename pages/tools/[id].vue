@@ -378,7 +378,7 @@ if (!resource.value) {
 
 // SEO Meta 配置
 useSeoMeta({
-  title: () => resource.value ? `${resource.value.name} - Vue.js 开发工具详情 | Vue Admin Hub` : '资源未找到',
+  title: () => resource.value ? `${resource.value.name} - Vue.js 开发工具详情 | Vue Admin` : '资源未找到',
   description: () => resource.value ? `${resource.value.description} | ${resource.value.features.slice(0, 3).join('、')} | ${resource.value.stars}+ GitHub Stars | 作者：${resource.value.author}` : '资源未找到',
   keywords: () => resource.value ? `${resource.value.name},${resource.value.tags.join(',')},Vue.js,开发工具,${resource.value.author}` : '',
   author: () => resource.value ? resource.value.author : '',
@@ -386,8 +386,8 @@ useSeoMeta({
   ogTitle: () => resource.value ? `${resource.value.name} - Vue.js 开发工具` : '资源未找到',
   ogDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '资源未找到',
   ogType: 'article',
-  ogUrl: () => resource.value ? `https://vueadminhub.com/tools/${resource.value.id}` : '',
-  ogImage: () => resource.value ? `https://vueadminhub.com/tools/${resource.value.id}/preview.jpg` : '',
+  ogUrl: () => resource.value ? `https://vueadmin.com/tools/${resource.value.id}` : '',
+  ogImage: () => resource.value ? `https://vueadmin.com/tools/${resource.value.id}/preview.jpg` : '',
   ogImageAlt: () => resource.value ? `${resource.value.name} 预览图` : '',
   articleAuthor: () => resource.value ? resource.value.author : '',
   articlePublishedTime: () => resource.value ? new Date(resource.value.lastUpdated + '-01').toISOString() : '',
@@ -396,7 +396,7 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   twitterTitle: () => resource.value ? `${resource.value.name} - Vue.js 开发工具` : '',
   twitterDescription: () => resource.value ? `${resource.value.description} | ${resource.value.stars}+ Stars` : '',
-  twitterImage: () => resource.value ? `https://vueadminhub.com/tools/${resource.value.id}/twitter.jpg` : ''
+  twitterImage: () => resource.value ? `https://vueadmin.com/tools/${resource.value.id}/twitter.jpg` : ''
 })
 
 // 结构化数据 for SEO

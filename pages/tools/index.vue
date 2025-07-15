@@ -153,7 +153,7 @@ import { tools } from '~/data/resources'
 
 // SEO Meta
 useSeoMeta({
-  title: 'Vue.js 开发工具 - Vue Admin Hub',
+  title: 'Vue.js 开发工具 - Vue Admin',
   description: '精选的 Vue.js 开发工具，包含 Vite、Pinia、Vue Router、Nuxt 等热门项目',
   keywords: 'Vue.js 开发工具, Vite, Pinia, Vue Router, Nuxt, Vitest'
 })

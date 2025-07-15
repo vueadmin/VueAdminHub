@@ -5,7 +5,7 @@
         <div class="col-span-2">
           <div class="flex items-center space-x-2 mb-4">
             <Icon name="logos:vue" class="h-8 w-8" />
-            <h2 class="text-white text-lg font-semibold">Vue Admin Hub</h2>
+            <h2 class="text-white text-lg font-semibold">Vue Admin</h2>
           </div>
           <p class="text-gray-300 text-sm mb-4">
             专业的 Vue.js 管理后台资源平台，为开发者提供最全面的模板、组件库和开发工具。
@@ -79,7 +79,7 @@
       <div class="mt-8 pt-8 border-t border-gray-700">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-300 text-sm">
-            © {{ new Date().getFullYear() }} Vue Admin Hub. 保留所有权利。
+            © {{ new Date().getFullYear() }} Vue Admin. 保留所有权利。
           </p>
           <div class="flex space-x-6 mt-4 md:mt-0">
             <a href="#" class="text-gray-300 hover:text-vue-light text-sm transition-colors duration-200">

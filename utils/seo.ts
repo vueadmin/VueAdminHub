@@ -1,12 +1,12 @@
 export const createWebsiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Vue Admin Hub',
+  name: 'Vue Admin',
   description: '专业的 Vue.js 管理后台资源平台，汇聚最优质的模板、组件库和开发工具',
-  url: 'https://vueadminhub.com',
+  url: 'https://vueadmin.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://vueadminhub.com/logo.png',
+    url: 'https://vueadmin.com/logo.png',
     width: 512,
     height: 512
   },
@@ -19,14 +19,14 @@ export const createWebsiteSchema = () => ({
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: 'https://vueadminhub.com/search?q={search_term_string}'
+      urlTemplate: 'https://vueadmin.com/search?q={search_term_string}'
     },
     'query-input': 'required name=search_term_string'
   },
   publisher: {
     '@type': 'Organization',
-    name: 'Vue Admin Hub',
-    url: 'https://vueadminhub.com'
+    name: 'Vue Admin',
+    url: 'https://vueadmin.com'
   }
 })
 
@@ -79,7 +79,7 @@ export const createCollectionPageSchema = (type: string, resources: any[]) => ({
   '@type': 'CollectionPage',
   name: `Vue.js ${type} 资源集合`,
   description: `精选的 Vue.js ${type}，为开发者提供优质的解决方案`,
-  url: `https://vueadminhub.com/${type}`,
+  url: `https://vueadmin.com/${type}`,
   mainEntity: {
     '@type': 'ItemList',
     numberOfItems: resources.length,
@@ -90,7 +90,7 @@ export const createCollectionPageSchema = (type: string, resources: any[]) => ({
         '@type': 'SoftwareApplication',
         name: resource.name,
         description: resource.description,
-        url: `https://vueadminhub.com/${type}/${resource.id}`
+        url: `https://vueadmin.com/${type}/${resource.id}`
       }
     }))
   }
@@ -99,12 +99,12 @@ export const createCollectionPageSchema = (type: string, resources: any[]) => ({
 export const createOrganizationSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Vue Admin Hub',
+  name: 'Vue Admin',
   description: '专业的 Vue.js 管理后台资源平台',
-  url: 'https://vueadminhub.com',
+  url: 'https://vueadmin.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://vueadminhub.com/logo.png'
+    url: 'https://vueadmin.com/logo.png'
   },
   contactPoint: {
     '@type': 'ContactPoint',

@@ -69,7 +69,7 @@ const breadcrumbSchema = computed(() => ({
     '@type': 'ListItem',
     position: index + 1,
     name: item.name,
-    item: item.url ? `https://vueadminhub.com${item.url}` : undefined
+    item: item.url ? `https://vueadmin.com${item.url}` : undefined
   }))
 }))
 

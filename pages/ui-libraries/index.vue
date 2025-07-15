@@ -153,7 +153,7 @@ import { uiLibraries } from '~/data/resources'
 
 // SEO Meta
 useSeoMeta({
-  title: 'Vue.js UI 组件库 - Vue Admin Hub',
+  title: 'Vue.js UI 组件库 - Vue Admin',
   description: '精选的 Vue.js UI 组件库，包含 Element Plus、Ant Design Vue、Naive UI 等热门项目',
   keywords: 'Vue.js UI 组件库, Element Plus, Ant Design Vue, Naive UI, Vuetify, Quasar'
 })

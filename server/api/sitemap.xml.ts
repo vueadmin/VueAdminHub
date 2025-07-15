@@ -1,7 +1,7 @@
 import { allResources, templates, uiLibraries, tools, plugins } from '~/data/resources'
 
 export default defineSitemapEventHandler(async () => {
-  const baseUrl = 'https://vueadminhub.com'
+  const baseUrl = 'https://vueadmin.com'
   
   const routes = [
     // 主要页面

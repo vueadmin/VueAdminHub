@@ -153,7 +153,7 @@ import { plugins } from '~/data/resources'
 
 // SEO Meta
 useSeoMeta({
-  title: 'Vue.js 插件工具 - Vue Admin Hub',
+  title: 'Vue.js 插件工具 - Vue Admin',
   description: '精选的 Vue.js 插件工具，包含 VueUse、Vue I18n、Auto Import 等热门项目',
   keywords: 'Vue.js 插件, VueUse, Vue I18n, Auto Import, Vue 工具'
 })

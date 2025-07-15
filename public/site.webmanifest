@@ -1,6 +1,6 @@
 {
-  "name": "Vue Admin Hub - Vue.js 管理后台资源平台",
-  "short_name": "Vue Admin Hub",
+  "name": "Vue Admin - Vue.js 管理后台资源平台",
+  "short_name": "Vue Admin",
   "description": "专业的 Vue.js 管理后台资源平台，汇聚40+精选资源",
   "start_url": "/",
   "display": "standalone",

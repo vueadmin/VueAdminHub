@@ -154,7 +154,7 @@ import type { ResourceItem } from '~/types'
 
 // SEO Meta
 useSeoMeta({
-  title: 'Vue.js 管理模板 - Vue Admin Hub',
+  title: 'Vue.js 管理模板 - Vue Admin',
   description: '精选的 Vue.js 管理后台模板，包含 vue-element-admin、vue-pure-admin 等热门项目',
   keywords: 'Vue.js 管理模板, vue-element-admin, vue-pure-admin, Admin Template, Vue Dashboard'
 })

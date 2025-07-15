@@ -6,7 +6,7 @@
           <NuxtLink to="/" class="flex items-center space-x-2">
             <Icon name="logos:vue" class="h-8 w-8" />
             <h1 class="text-white text-xl font-bold hover:text-vue-light transition-colors duration-200">
-              Vue Admin Hub
+              Vue Admin
             </h1>
           </NuxtLink>
         </div>

@@ -13,12 +13,12 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'Vue Admin Hub - 专业的 Vue.js 管理后台资源平台',
-      titleTemplate: '%s | Vue Admin Hub',
+      title: 'Vue Admin - 专业的 Vue.js 管理后台资源平台',
+      titleTemplate: '%s | Vue Admin',
       meta: [
         { name: 'description', content: '汇聚最优质的 Vue.js 管理模板、UI 组件库和开发工具。包含 vue-element-admin、Element Plus、Ant Design Vue 等40+精选资源，助力开发者构建现代化管理系统。' },
         { name: 'keywords', content: 'Vue.js,管理后台,Admin模板,Element Plus,Ant Design Vue,vue-element-admin,vue-pure-admin,Vite,Nuxt,UI组件库,开发工具' },
-        { name: 'author', content: 'Vue Admin Hub' },
+        { name: 'author', content: 'Vue Admin' },
         { name: 'robots', content: 'index, follow, max-image-preview:large' },
         { name: 'language', content: 'zh-CN' },
         { name: 'revisit-after', content: '7 days' },
@@ -26,25 +26,25 @@ export default defineNuxtConfig({
         { name: 'rating', content: 'general' },
         
         // Open Graph
-        { property: 'og:site_name', content: 'Vue Admin Hub' },
+        { property: 'og:site_name', content: 'Vue Admin' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'zh_CN' },
-        { property: 'og:image', content: 'https://vueadminhub.com/og-image.jpg' },
+        { property: 'og:image', content: 'https://vueadmin.com/og-image.jpg' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
-        { property: 'og:image:alt', content: 'Vue Admin Hub - Vue.js 管理后台资源平台' },
+        { property: 'og:image:alt', content: 'Vue Admin - Vue.js 管理后台资源平台' },
         
         // Twitter Cards
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@vueadminhub' },
-        { name: 'twitter:creator', content: '@vueadminhub' },
-        { name: 'twitter:image', content: 'https://vueadminhub.com/twitter-image.jpg' },
+        { name: 'twitter:site', content: '@VueAdmin' },
+        { name: 'twitter:creator', content: '@VueAdmin' },
+        { name: 'twitter:image', content: 'https://vueadmin.com/twitter-image.jpg' },
         
         // 移动端优化
         { name: 'mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-        { name: 'apple-mobile-web-app-title', content: 'Vue Admin Hub' },
+        { name: 'apple-mobile-web-app-title', content: 'Vue Admin' },
         
         // 搜索引擎优化
         { name: 'google-site-verification', content: 'your-google-verification-code' },
@@ -52,7 +52,7 @@ export default defineNuxtConfig({
         { name: 'yandex-verification', content: 'your-yandex-verification-code' }
       ],
       link: [
-        { rel: 'canonical', href: 'https://vueadminhub.com' },
+        { rel: 'canonical', href: 'https://vueadmin.com' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
@@ -74,7 +74,7 @@ export default defineNuxtConfig({
 
   // 站点地图配置
   sitemap: {
-    hostname: 'https://vueadminhub.com',
+    hostname: 'https://vueadmin.com',
     gzip: true,
     routes: async () => {
       const { allResources } = await import('./data/resources')
@@ -97,8 +97,7 @@ export default defineNuxtConfig({
         routes.push({
           url: `/${categoryPath}/${resource.id}`,
           changefreq: 'monthly',
-          priority: resource.isPopular ? 0.8 : 0.6,
-          lastmod: new Date(resource.lastUpdated + '-01').toISOString()
+          priority: resource.isPopular ? 0.8 : 0.6
         })
       })
 

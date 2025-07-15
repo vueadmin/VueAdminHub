@@ -48,7 +48,7 @@
     <div v-if="filteredResources.length > 0" class="space-y-8">
       <section v-if="categorizedResults.templates.length > 0">
         <h2 class="text-xl font-semibold text-vue-dark mb-4 flex items-center">
-          <Icon name="heroicons:template-20-solid" class="h-5 w-5 mr-2" />
+          <Icon name="heroicons:squares-plus-20-solid" class="h-5 w-5 mr-2" />
           管理模板 ({{ categorizedResults.templates.length }})
         </h2>
         <div
@@ -196,7 +196,7 @@ const searchQuery = ref((route.query.q as string) || '')
 
 // SEO Meta
 useSeoMeta({
-  title: () => `搜索 "${searchQuery.value}" - Vue Admin Hub`,
+  title: () => `搜索 "${searchQuery.value}" - Vue Admin`,
   description: () => `搜索 Vue.js 相关资源："${searchQuery.value}"`,
   keywords: () => `${searchQuery.value}, Vue.js, 搜索, 资源`
 })
